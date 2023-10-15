@@ -48,10 +48,11 @@ map('v', "K", ":m '<-2<CR>gv=gv", opt)
 
 --插件快捷键
 -- Telescope
-map("n", "<leader>f", ":Telescope find_files<CR>", opt)
-map("n", "<leader>g", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opt)
-map("n", "<leader>p", ":lua require('telescope').extensions.project.project{}<CR>", opt)
-map("n", "<leader>y", ":lua require('telescope').extensions.yank_history.yank_history()<CR>", opt)
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>f', builtin.find_files, {})
+vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
+-- vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+-- vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 
 -- nvimTree
 map('n', '<C-n>', ':NvimTreeToggle<CR>', opt)
@@ -98,6 +99,7 @@ vim.keymap.set('x', '<leader>aw', function() require'align'.align_to_string(fals
 -- vim.keymap.set('i', '<leader>aa', function() require'align'.align_to_char(1, true)             end, opt)
 -- imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
 -- let g:copilot_no_tab_map = v:true
+
 map('i', '<C-y>', 'copilot#Accept("<CR>")', {silent = true, expr = true})
 
 

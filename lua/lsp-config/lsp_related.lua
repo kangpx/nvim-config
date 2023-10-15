@@ -4,15 +4,27 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lspconfig = require('lspconfig')
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = {'pylsp', 'texlab', 'clangd'}
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
-end
+-- local servers = {'pylsp', 'texlab', 'clangd'}
+-- for _, lsp in ipairs(servers) do
+--   lspconfig[lsp].setup {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--   }
+-- end
+
+lspconfig.clangd.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = {
+    "clangd",
+    "--offset-encoding=utf-16",
+  },
+}
+
 -- configurationso of pylsp
 lspconfig.pylsp.setup{
+  on_attach = on_attach,
+  capabilities = capabilities,
   settings = {
     pylsp = {
       plugins = {
@@ -77,6 +89,7 @@ cmp.setup {
     end, { 'i', 's' }),
   }),
   sources = {
+    { name = 'copilot' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
   },

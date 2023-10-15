@@ -2,15 +2,14 @@ return require('packer').startup(function()
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
-    -- tokyonight
+    -- colorschemes
     use 'folke/tokyonight.nvim'
-
-    -- nightfox
     use 'EdenEast/nightfox.nvim'
+    use 'rebelot/kanagawa.nvim'
 
     -- which-key
     use "folke/which-key.nvim" 
-    
+
     -- nvim-tree
     use {
 	    'nvim-tree/nvim-tree.lua',
@@ -52,7 +51,7 @@ return require('packer').startup(function()
 
     -- autopairs
     use 'windwp/nvim-autopairs'
-    
+
     -- lualine.nvim
     use {
         'nvim-lualine/lualine.nvim',
@@ -78,25 +77,29 @@ return require('packer').startup(function()
     })
 
     -- telescope
+    -- use {
+    --     'nvim-telescope/telescope.nvim', 
+    --     tag = '0.1.1', 
+    --     requires = {
+    --         'nvim-lua/plenary.nvim',
+    --         'nvim-telescope/telescope-project.nvim',
+    --         'nvim-telescope/telescope-live-grep-args.nvim'
+    --     }
     use {
-        'nvim-telescope/telescope.nvim', 
-        tag = '0.1.1', 
-        requires = {
-            'nvim-lua/plenary.nvim',
-            'nvim-telescope/telescope-project.nvim',
-            'nvim-telescope/telescope-live-grep-args.nvim'
-        }
+    'nvim-telescope/telescope.nvim', tag = '0.1.4',
+    -- or                            , branch = '0.1.x',
+    requires = { {'nvim-lua/plenary.nvim'} }
     }
 
     -- alpha-nvim
     use {'goolord/alpha-nvim', requires = { 'nvim-tree/nvim-web-devicons' },}
 
     -- indent_blankline
-    use 'lukas-reineke/indent-blankline.nvim'
-    
+    use 'lukas-reineke/indent-blankline.nvim'    
+
     -- inc-rename
     use 'smjonas/inc-rename.nvim'
-    
+
     -- leap.nvim
     use 'ggandor/leap.nvim'
 
@@ -118,7 +121,7 @@ return require('packer').startup(function()
     -- yanky
     use 'gbprod/yanky.nvim'
 
-    -- nvim-ufo
+    -- -- nvim-ufo
     use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
 
     -- nvim-comment-frame
@@ -146,7 +149,20 @@ return require('packer').startup(function()
     use 'Vonr/align.nvim'
 
     -- copilot
-    --use 'github/copilot.vim'
-
+    -- use 'github/copilot.vim'
+    use {"zbirenbaum/copilot.lua",
+        config = function()
+            require('copilot').setup({
+                suggestion = {enabled=false},
+                panel = {enabled=false},
+            })
+            end
+    }
+    -- copilot-cmp
+    use {"zbirenbaum/copilot-cmp",
+         config = function()
+            require('copilot_cmp').setup()
+        end
+    }
 end)
 

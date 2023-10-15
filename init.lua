@@ -41,6 +41,7 @@ require('plugin-config/cinnamon')
 require('plugin-config/auto-save')
 require('plugin-config/todo-comments')
 require('plugin-config/copilot')
+require('plugin-config/copilot_cmp')
 -- require('plugin-config/hlargs')
 
 -- lsp
